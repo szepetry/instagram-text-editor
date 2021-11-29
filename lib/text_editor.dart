@@ -88,6 +88,7 @@ class _TextEditorState extends State<TextEditor> {
 
   @override
   void initState() {
+    textEditingController.text = _textStyleModel.text;
     textEditingController.selection = TextSelection(
         baseOffset: 0, extentOffset: textEditingController.text.length);
 
@@ -186,8 +187,7 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: textEditingController
-                            ..text = _textStyleModel.text,
+                          controller: textEditingController,
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
                           enableIMEPersonalizedLearning: true,
