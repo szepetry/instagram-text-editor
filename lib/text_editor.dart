@@ -51,6 +51,8 @@ class TextEditor extends StatefulWidget {
   /// Decoration to customize the editor
   final EditorDecoration? decoration;
 
+  final TextEditingController textEditingController = TextEditingController();
+
   final double? minFontSize;
   final double? maxFontSize;
 
@@ -84,13 +86,13 @@ class _TextEditorState extends State<TextEditor> {
   late TextStyleModel _textStyleModel;
   late FontOptionModel _fontOptionModel;
   late Widget _doneButton;
-  TextEditingController textEditingController = TextEditingController();
+  
 
   @override
   void initState() {
-    textEditingController.text = _textStyleModel.text;
-    textEditingController.selection = TextSelection(
-        baseOffset: 0, extentOffset: textEditingController.text.length);
+    // widget.textEditingController.text = _textStyleModel.text;
+    widget.textEditingController.selection = TextSelection(
+        baseOffset: 0, extentOffset: widget.textEditingController.text.length);
 
     _textStyleModel = TextStyleModel(
       widget.text,
@@ -187,7 +189,8 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: textEditingController,
+                          controller: widget.textEditingController
+                            ..text = _textStyleModel.text,
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
                           enableIMEPersonalizedLearning: true,
