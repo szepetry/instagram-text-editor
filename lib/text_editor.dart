@@ -24,7 +24,7 @@ class TextEditor extends StatefulWidget {
   /// After edit process completed, [onEditCompleted] callback will be called.
   final void Function(TextStyle, TextAlign, String) onEditCompleted;
 
-  /// [onTextAlignChanged] will be called after [textAlingment] prop has changed
+  /// [onTextAlignChanged] will be called after [textAlignment] prop has changed
   final ValueChanged<TextAlign>? onTextAlignChanged;
 
   /// [onTextStyleChanged] will be called after [textStyle] prop has changed
@@ -34,7 +34,7 @@ class TextEditor extends StatefulWidget {
   final ValueChanged<String>? onTextChanged;
 
   /// The text alignment
-  final TextAlign? textAlingment;
+  final TextAlign? textAlignment;
 
   /// The text style
   final TextStyle? textStyle;
@@ -59,7 +59,7 @@ class TextEditor extends StatefulWidget {
   /// [fonts] list of font families that you want to use in editor.
   ///
   /// After edit process completed, [onEditCompleted] callback will be called
-  /// with new [textStyle], [textAlingment] and [text] value
+  /// with new [textStyle], [textAlignment] and [text] value
   TextEditor({
     required this.fonts,
     required this.onEditCompleted,
@@ -67,7 +67,7 @@ class TextEditor extends StatefulWidget {
     this.backgroundColor,
     this.text = '',
     this.textStyle,
-    this.textAlingment,
+    this.textAlignment,
     this.minFontSize = 1,
     this.maxFontSize = 100,
     this.onTextAlignChanged,
@@ -90,7 +90,7 @@ class _TextEditorState extends State<TextEditor> {
     _textStyleModel = TextStyleModel(
       widget.text,
       textStyle: widget.textStyle,
-      textAlign: widget.textAlingment,
+      textAlign: widget.textAlignment,
     );
     _fontOptionModel = FontOptionModel(
       _textStyleModel,
