@@ -84,9 +84,13 @@ class _TextEditorState extends State<TextEditor> {
   late TextStyleModel _textStyleModel;
   late FontOptionModel _fontOptionModel;
   late Widget _doneButton;
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   void initState() {
+    textEditingController.selection = TextSelection(
+        baseOffset: 0, extentOffset: textEditingController.text.length);
+
     _textStyleModel = TextStyleModel(
       widget.text,
       textStyle: widget.textStyle,
@@ -182,10 +186,13 @@ class _TextEditorState extends State<TextEditor> {
                     child: Container(
                       child: Center(
                         child: TextField(
-                          controller: TextEditingController()
+                          controller: textEditingController
                             ..text = _textStyleModel.text,
                           onChanged: (value) => _textStyleModel.text = value,
                           maxLines: null,
+                          enableIMEPersonalizedLearning: true,
+                          enableInteractiveSelection: true,
+                          enableSuggestions: true,
                           keyboardType: TextInputType.multiline,
                           style: _textStyleModel.textStyle,
                           textAlign: _textStyleModel.textAlign!,
